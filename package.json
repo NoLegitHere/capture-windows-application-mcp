@@ -7,10 +7,20 @@
   "bin": {
     "capture-windows-mcp": "dist/index.js"
   },
+  "files": [
+    "dist/",
+    "skills/",
+    "scripts/",
+    ".claude-plugin/",
+    ".codex-plugin/",
+    ".mcp.json",
+    "plugin.json"
+  ],
   "scripts": {
-    "build": "tsc && xcopy /E /Y /I src\\scripts dist\\scripts",
+    "build": "tsc && esbuild src/index.ts --bundle --platform=node --format=esm --target=node18 --outfile=dist/index.js && xcopy /E /Y /I src\\scripts dist\\scripts",
     "start": "node dist/index.js",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "verify:package": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/verify-package.ps1"
   },
   "keywords": [
     "mcp",
@@ -29,6 +39,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.15.3",
+    "esbuild": "^0.28.0",
     "typescript": "^5.8.3"
   },
   "engines": {

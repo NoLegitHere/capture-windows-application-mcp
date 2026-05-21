@@ -28,6 +28,9 @@ jobs:
       - name: Pack npm artifact
         run: npm pack
 
+      - name: Verify plugin archive
+        run: npm run verify:package
+
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
@@ -42,6 +45,7 @@ jobs:
             .codex-plugin/**
             skills/**
             scripts/**
+            capture-windows-application-plugin.zip
             README.md
             LICENSE
             *.tgz

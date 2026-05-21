@@ -33,7 +33,7 @@ npm ci
 npm run build
 ```
 
-The build produces `dist/index.js` and copies the PowerShell capture scripts into `dist/scripts/`.
+The build bundles the MCP runtime into `dist/index.js` and copies the PowerShell capture scripts into `dist/scripts/`, so plugin archives can start without a nearby workspace `node_modules` directory.
 
 ## Plugin Bundle
 
@@ -193,6 +193,8 @@ After CI succeeds on `main`, Release Please watches Conventional Commits, mainta
 
 - an npm package tarball from `npm pack`
 - a plugin ZIP containing the built server, skill, plugin manifests, MCP config, scripts, and docs
+
+CI also extracts the generated plugin ZIP into an isolated folder and checks that the packaged MCP process starts there.
 
 ## How It Works
 

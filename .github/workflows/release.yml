@@ -52,22 +52,11 @@ jobs:
 
       - name: Create plugin archive
         if: ${{ steps.release.outputs.release_created }}
-        shell: pwsh
-        run: |
-          $files = @(
-            "dist",
-            "skills",
-            "scripts",
-            ".claude-plugin",
-            ".codex-plugin",
-            ".mcp.json",
-            "plugin.json",
-            "package.json",
-            "package-lock.json",
-            "README.md",
-            "LICENSE"
-          )
-          Compress-Archive -Path $files -DestinationPath "capture-windows-application-plugin.zip"
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/create-plugin-archive.ps1
+
+      - name: Verify plugin archive
+        if: ${{ steps.release.outputs.release_created }}
+        run: npm run verify:package
 
       - name: Publish GitHub release assets
         if: ${{ steps.release.outputs.release_created }}
