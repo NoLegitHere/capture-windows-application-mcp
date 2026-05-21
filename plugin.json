@@ -1,6 +1,6 @@
 {
   "name": "capture-windows-application",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Launch and capture visible Windows application windows through a local MCP server.",
   "author": {
     "name": "NoLegitHere",
