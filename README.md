@@ -189,7 +189,7 @@ List visible desktop windows with their titles, process names, and process IDs.
 
 GitHub Actions builds the server on pushes and pull requests.
 
-Release Please starts from version `1.0.0`, watches Conventional Commits on `main`, maintains a release PR, updates the Node package version, plugin manifest versions, and changelog, then creates the GitHub Release when that release PR is merged. The release workflow builds and attaches:
+After CI succeeds on `main`, Release Please watches Conventional Commits, maintains a release PR, updates the Node package version, plugin manifest versions, and changelog, then creates the GitHub Release when that release PR is merged. The release workflow builds and attaches:
 
 - an npm package tarball from `npm pack`
 - a plugin ZIP containing the built server, skill, plugin manifests, MCP config, scripts, and docs
