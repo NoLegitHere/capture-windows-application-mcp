@@ -2,36 +2,50 @@ name: Release
 
 on:
   push:
-    tags:
-      - "v*"
+    branches:
+      - main
 
 permissions:
   contents: write
+  issues: write
+  pull-requests: write
 
 jobs:
   release:
     runs-on: windows-latest
 
     steps:
+      - name: Prepare release
+        id: release
+        uses: googleapis/release-please-action@v4
+        with:
+          release-type: node
+
       - name: Checkout
+        if: ${{ steps.release.outputs.release_created }}
         uses: actions/checkout@v4
 
       - name: Setup Node
+        if: ${{ steps.release.outputs.release_created }}
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
       - name: Install dependencies
+        if: ${{ steps.release.outputs.release_created }}
         run: npm ci
 
       - name: Build
+        if: ${{ steps.release.outputs.release_created }}
         run: npm run build
 
       - name: Create npm package
+        if: ${{ steps.release.outputs.release_created }}
         run: npm pack
 
       - name: Create plugin archive
+        if: ${{ steps.release.outputs.release_created }}
         shell: pwsh
         run: |
           $files = @(
@@ -50,8 +64,10 @@ jobs:
           Compress-Archive -Path $files -DestinationPath "capture-windows-application-plugin.zip"
 
       - name: Publish GitHub release assets
+        if: ${{ steps.release.outputs.release_created }}
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ steps.release.outputs.tag_name }}
           files: |
             *.tgz
             capture-windows-application-plugin.zip

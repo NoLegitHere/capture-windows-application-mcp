@@ -187,7 +187,9 @@ List visible desktop windows with their titles, process names, and process IDs.
 
 ## Automation
 
-GitHub Actions builds the server on pushes and pull requests. Version tags matching `v*` build a GitHub release with:
+GitHub Actions builds the server on pushes and pull requests.
+
+Release Please watches Conventional Commits on `main`, maintains a release PR, updates the Node package version and changelog, then creates the GitHub Release when that release PR is merged. The release workflow builds and attaches:
 
 - an npm package tarball from `npm pack`
 - a plugin ZIP containing the built server, skill, plugin manifests, MCP config, scripts, and docs
