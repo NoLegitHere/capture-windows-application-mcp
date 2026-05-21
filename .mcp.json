@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "capture-windows": {
+      "command": "node",
+      "args": ["./dist/index.js"]
+    }
+  }
+}

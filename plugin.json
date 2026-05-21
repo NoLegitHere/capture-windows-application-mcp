@@ -1,0 +1,21 @@
+{
+  "name": "capture-windows-application",
+  "version": "1.0.0",
+  "description": "Launch and capture visible Windows application windows through a local MCP server.",
+  "author": {
+    "name": "NoLegitHere",
+    "url": "https://github.com/NoLegitHere"
+  },
+  "homepage": "https://github.com/NoLegitHere/capture-windows-application-mcp#readme",
+  "repository": "https://github.com/NoLegitHere/capture-windows-application-mcp",
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "windows",
+    "screenshot",
+    "agent-skill",
+    "desktop-automation"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}
